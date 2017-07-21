@@ -1,0 +1,22 @@
+{
+  "name": "board-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that creates stickers from 4chan board OP's",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hoi15A/boardBot.git"
+  },
+  "author": "Austin Albrecht",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Hoi15A/boardBot/issues"
+  },
+  "homepage": "https://github.com/Hoi15A/boardBot#readme",
+  "dependencies": {
+    "4chanjs": "^0.1.0"
+  }
+}
