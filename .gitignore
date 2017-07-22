@@ -1,6 +1,9 @@
 # Config file
 config.json
 
+# Contents of the temporary folder
+tmp/*
+
 # Logs
 logs
 *.log

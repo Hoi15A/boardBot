@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/Hoi15A/boardBot#readme",
   "dependencies": {
-    "4chanjs": "^0.1.0"
+    "4chanjs": "^0.1.0",
+    "async": "^2.5.0",
+    "console-stamp": "^0.2.5",
+    "jimp": "^0.2.28"
   }
 }
