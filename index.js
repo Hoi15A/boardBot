@@ -1,4 +1,5 @@
 var path = require('path')
+var fs = require('fs')
 var conf = require('./config.json')
 
 var chan = require('4chanjs')
@@ -8,8 +9,15 @@ var async = require('async')
 var board = chan.board(conf.board)
 
 function cropAndSave (urlList) {
+  var savedFilePaths = []
   async.eachSeries(urlList, function (url, callback) {
     Jimp.read(url.url, function (err, image) {
+      if (image === undefined) {
+        console.error('Image is undefined, skipping: ', url.url)
+        callback()
+        return
+      }
+
       if (err == null) {
         image.scaleToFit(512, 512)
         image.quality(80)
@@ -17,7 +25,8 @@ function cropAndSave (urlList) {
         var filePath = path.join(__dirname, 'tmp', url.tim + '.png')
 
         image.write(filePath, function () {
-          console.log('File saved')
+          console.log('File saved: ', filePath)
+          savedFilePaths.push(filePath)
           callback()
         })
       } else {
@@ -32,7 +41,12 @@ function cropAndSave (urlList) {
       console.log('All files have been downloaded successfully')
     }
   })
-};
+}
+
+function checkImageValidity (imagePath) {
+  var fileStats = fs.statSync(imagePath)
+  var fileSizeKb = fileStats.size / 1000.0
+}
 
 board.catalog(function (err, pages) {
   if (pages == null) {
